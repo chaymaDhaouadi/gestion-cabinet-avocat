@@ -1,0 +1,55 @@
+<div class="max-w-2xl mx-auto pt-36 p-10 bg-white rounded-lg shadow-md">
+
+  <h2 class="text-3xl font-bold mb-6 text-center text-gray-800">Ajouter une Audience</h2>
+
+  <form [formGroup]="audienceForm" (ngSubmit)="onSubmit()"
+    class="space-y-6 max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg">
+
+    <!-- Select Dossier -->
+    <div class="flex flex-col">
+      <label class="mb-2 font-semibold text-lg text-gray-700">Dossier lié</label>
+      <select formControlName="dossier_id"
+        class="w-full border-2 border-gray-300 rounded-lg p-3 text-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+        <option value="" disabled selected>-- Sélectionnez un dossier --</option>
+        <option *ngFor="let dossier of dossiers" [value]="dossier._id">
+          {{ dossier.titre_dossier || 'Dossier sans nom' }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Date -->
+    <div class="flex flex-col">
+      <label class="mb-2 font-semibold text-lg text-gray-700">Date de l'audience</label>
+      <input type="date" formControlName="date_audience"
+        class="w-full border-2 border-gray-300 rounded-lg p-3 text-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
+    </div>
+
+    <!-- Lieu -->
+    <div class="flex flex-col">
+      <label class="mb-2 font-semibold text-lg text-gray-700">Lieu</label>
+      <input formControlName="lieu" placeholder="Lieu"
+        class="w-full border-2 border-gray-300 rounded-lg p-3 text-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
+    </div>
+
+    <!-- Résumé -->
+    <div class="flex flex-col">
+      <label class="mb-2 font-semibold text-lg text-gray-700">Résumé</label>
+      <textarea formControlName="resume" placeholder="Résumé"
+        class="w-full border-2 border-gray-300 rounded-lg p-3 text-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"></textarea>
+    </div>
+
+    <!-- Résultat (optionnel) -->
+    <div class="flex flex-col">
+      <label class="mb-2 font-semibold text-lg text-gray-700">Résultat (optionnel)</label>
+      <input formControlName="resultat" placeholder="Résultat"
+        class="w-full border-2 border-gray-300 rounded-lg p-3 text-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
+    </div>
+
+    <!-- Submit -->
+    <div class="flex justify-center">
+      <button type="submit"
+        class="bg-blue-600 text-white px-8 py-3 rounded-lg text-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+        Ajouter Audience
+      </button>
+    </div>
+  </form>

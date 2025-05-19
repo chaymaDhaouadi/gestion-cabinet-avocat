@@ -1,0 +1,44 @@
+<div class="max-w-2xl mx-auto pt-36 p-10 bg-white rounded-lg shadow-md">
+    <h2 class="text-2xl font-bold mb-4 text-center">تعديل محكمة</h2>
+
+    <form (ngSubmit)="updateTribunal()">
+        <div class="mb-4">
+            <label>اسم المحكمة :</label>
+            <input type="text" [(ngModel)]="tribunal.nom" name="nom" dir="rtl" required
+                class="p-2 border rounded-md w-full" />
+        </div>
+
+        <div class="mb-4">
+            <label>الفئة :</label>
+            <select [(ngModel)]="tribunal.categorie" name="categorie" dir="rtl" required
+                class="p-2 border rounded-md w-full">
+                <option value="">اختر الفئة</option>
+                <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+            </select>
+        </div>
+
+        <div class="mb-4">
+            <label>العنوان :</label>
+            <input type="text" [(ngModel)]="tribunal.adresse" name="adresse" dir="rtl" required
+                class="p-2 border rounded-md w-full" />
+        </div>
+
+        <div class="mb-4">
+            <label>رقم الهاتف :</label>
+            <input type="text" [(ngModel)]="tribunal.contact.telephone" name="telephone" required
+                class="p-2 border rounded-md w-full" />
+        </div>
+
+        <div class="mb-4">
+            <label>البريد الإلكتروني :</label>
+            <input type="email" [(ngModel)]="tribunal.contact.email" name="email" required
+                class="p-2 border rounded-md w-full" />
+        </div>
+
+        <div class="flex justify-between">
+            <button type="submit"
+                class="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition">تعديل</button>
+
+        </div>
+    </form>
+</div>

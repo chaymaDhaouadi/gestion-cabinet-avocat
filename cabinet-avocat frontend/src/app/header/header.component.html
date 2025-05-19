@@ -1,0 +1,59 @@
+<header class="fixed top-0 left-0 z-10 w-full bg-white shadow-md">
+  <!-- Barre supérieure -->
+  <div class="bg-gray-900 text-gray-300 text-sm px-6 py-2 flex justify-between items-center">
+    <div class="space-x-4">
+      <span>📞 Call us: 073 256 866</span>
+      <span>✉️ Email us: mouadhjaballah&#64;gmail.com</span>
+      <span>📍 Avenue de la République, Moknine, Tunis - Tunisia</span>
+    </div>
+    <div class="flex space-x-4">
+      <a href="https://www.facebook.com/mouadh.jb.3" class="hover:text-white">Facebook</a>
+      <a href="#" class="hover:text-white">LinkedIn</a>
+    </div>
+  </div>
+
+  <!-- Barre principale -->
+  <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+    <!-- Logo -->
+    <div class="flex items-center">
+      <img src="assets/logo.png" alt="logo" class="h-16 w-auto object-contain" />
+    </div>
+
+    <!-- Navigation -->
+    <nav class="hidden md:flex space-x-6 text-gray-700 font-medium">
+      <a routerLink="/" class="hover:text-black-600 transition">Home</a>
+      <a routerLink="/clients/list" class="hover:text-black-600 transition">Clients</a>
+      <a routerLink="/agenda" class="hover:text-black-600 transition">Rendez-vous</a>
+      <a routerLink="/dossiers/list" class="hover:text-black-600 transition">Dossiers</a>
+      <a routerLink="/document/list" class="hover:text-black-600 transition">Documents</a>
+      <a routerLink="/tribunaux" class="hover:text-black-600 transition">Tribunaux</a>
+      <a routerLink="/facture-list" class="hover:text-black-600 transition">Factures</a>
+      <a routerLink="/contact" class="hover:text-black-600 transition">Contact</a>
+    </nav>
+
+    <!-- Outils utilisateur -->
+    <div class="flex items-center space-x-4">
+      <!-- Recherche CIN -->
+      <div class="flex items-center space-x-2">
+        <button (click)="toggleSearch()" class="text-gray-700 hover:text-blue-600">🔍</button>
+        <input type="text" [(ngModel)]="cinRecherche" placeholder="Recherche CIN..."
+          class="px-2 py-1 border rounded-md text-sm focus:outline-none focus:ring focus:border-blue-300" />
+        <button (click)="rechercherClientParCIN()" class="text-gray-700 hover:text-blue-600"></button>
+      </div>
+
+      <!-- ✅ Toast de succès -->
+      <div *ngIf="showToast" class="fixed top-5 right-5 z-50 animate-fade-in-out">
+        <div class="bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg flex items-center space-x-3">
+          <span>✅</span>
+          <span>Client trouvé avec succès !</span>
+        </div>
+      </div>
+
+      <!-- Utilisateur & bouton -->
+      <a href="#" class="text-gray-700 hover:text-blue-600 text-xl">👤</a>
+      <button class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold px-4 py-2 rounded-md shadow">
+        Free Consultation
+      </button>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,93 @@
+Chapitre 1 : Présentation générale du projet
+       1. Introduction
+Dans le cadre de ce projet, 
+nous avons conçu et développé une application web dédiée à la gestion complète d’un cabinet d’avocats. 
+L'objectif principal est de centraliser les différentes tâches administratives et organisationnelles du cabinet
+ afin de faciliter le suivi des dossiers, la gestion des rendez-vous, la facturation, 
+et la relation avec les clients. 
+Cette solution s’adresse à un seul avocat (Admin) qui agit en tant qu’utilisateur unique de la plateforme.
+
+   2. Présentation de l’organisme d’accueil
+Le projet a été réalisé dans le cadre d’un travail personnel universitaire, 
+simulant un cabinet d’avocat en activité. 
+L’organisme d’accueil représente un cabinet fictif géré par un avocat indépendant, 
+ayant pour besoin la centralisation de ses activités professionnelles au sein d’un système web unique, 
+moderne, sécurisé et facilement accessible.
+
+     3. Contexte et problématique du projet
+        3.1. Contexte du projet
+Les avocats indépendants gèrent une grande quantité d’informations :
+ données clients,  rendez-vous, documents, et facturation.
+ La majorité d’entre eux s’appuie encore sur des outils classiques (papier, fichiers Excel, messageries) 
+qui ne sont ni centralisés ni optimisés. Cette situation génère une perte de temps, un risque d'erreurs et une difficulté à retrouver certaines informations rapidement.
+
+    3.2. Problématique
+Comment mettre en place une solution informatique simple, 
+intuitive, mais complète, permettant à un avocat indépendant de :
+
+Gérer ses clients et affaires juridiques efficacement,
+
+Organiser ses rendez-vous et son emploi du temps,
+
+Gérer les documents liés aux affaires,
+
+Générer des factures et suivre les paiements, tout cela en un seul endroit avec une interface sécurisée réservée à un seul utilisateur (l’avocat lui-même) ?
+
+       4. Étude préalable
+         4.1. Étude de la solution existante
+Il existe plusieurs logiciels de gestion juridique sur le marché, tels que Jarvis Legal, 
+Clio ou RPVA, mais ceux-ci sont souvent :
+
+Trop complexes pour un avocat indépendant,
+
+Payants avec un abonnement mensuel élevé,
+
+Conçus pour des cabinets avec plusieurs avocats/utilisateurs.
+
+    4.2. Critique de la solution existante
+Les solutions existantes ne répondent pas parfaitement aux besoins d’un avocat travaillant seul. 
+Elles nécessitent souvent une formation préalable, 
+et certaines fonctionnalités ne sont pas utilisées par les petits cabinets. 
+De plus, le coût est souvent un frein à leur adoption. 
+Il est donc pertinent de proposer une solution personnalisée, légère et économique.
+
+    5. Solution proposée
+L’application web développée répond à ces limites en offrant une interface :
+
+Accessible via un navigateur web,
+
+Sécurisée par un système d’authentification simple,
+
+Dotée de cinq modules principaux :
+
+Gestion des clients,
+
+Suivi des affaires juridiques,
+
+Agenda des rendez-vous,
+
+Gestion documentaire,
+
+Facturation. La solution permet à l’avocat d’avoir un tableau de bord centralisé pour suivre toutes ses activités sans dépendre d’un service tiers. Elle est développée avec Angular pour le frontend, Node.js (Express) pour le backend, et MongoDB comme base de données.
+
+   6. Étude des méthodologies de développement
+       6.1. Choix de la méthodologie
+Le projet a été développé en suivant une approche agile simplifiée, adaptée aux projets individuels :
+
+Organisation par sprints courts (découpage par modules à développer),
+
+Révisions fréquentes,
+
+Tests manuels à chaque étape,
+
+Flexibilité pour ajouter ou retirer des fonctionnalités selon les besoins.
+
+6.2. Choix du langage de modélisation
+Le langage de modélisation choisi est UML (Unified Modeling Language), car il permet de :
+
+Décrire les cas d’utilisation de l’avocat (diagrammes de cas d’utilisation),
+
+Structurer les entités principales (diagrammes de classes),
+
+Montrer le déroulement des interactions (diagrammes de séquence). Ces diagrammes facilitent la compréhension globale du fonctionnement de l’application.
+

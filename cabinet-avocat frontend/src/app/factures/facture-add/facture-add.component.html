@@ -1,0 +1,103 @@
+<div class="max-w-2xl mx-auto pt-36 p-10 bg-white rounded-lg shadow-md">
+    <h2 class="text-2xl font-bold mb-6 text-center">Générer une Facture</h2>
+
+    <form [formGroup]="factureForm" (ngSubmit)="
+  onSubmit()">
+
+        <!-- Numéro de Facture -->
+        <div class="mb-4">
+            <label for="numeroFacture" class="block text-sm font-medium text-gray-700">Numéro de Facture</label>
+            <input type="text" formControlName="numeroFacture" id="numeroFacture"
+                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                placeholder="Ex: FAC-00001" />
+            <div *ngIf="factureForm.get('numeroFacture')?.hasError('required') && factureForm.get('numeroFacture')?.touched"
+                class="text-red-500 text-sm">
+                Le numéro de facture est requis.
+            </div>
+            <div *ngIf="factureForm.get('numeroFacture')?.hasError('pattern') && factureForm.get('numeroFacture')?.touched"
+                class="text-red-500 text-sm">
+                Le numéro de facture doit commencer par FAC- suivi de 5 chiffres.
+            </div>
+        </div>
+
+
+        <!-- Client -->
+        <div class="mb-4">
+            <label for="client" class="block text-sm font-medium text-gray-700">Client</label>
+            <select formControlName="clientId" id="client"
+                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                <option value="">-- Sélectionner un client --</option>
+                <option *ngFor="let client of clients" [value]="client._id">{{ client.nom }}</option>
+            </select>
+            <div *ngIf="factureForm.get('clientId')?.invalid && factureForm.get('clientId')?.touched"
+                class="text-red-500 text-sm">
+                Sélectionnez un client.
+            </div>
+        </div>
+
+        <!-- Dossier -->
+        <div class="mb-4">
+            <label for="dossier" class="block text-sm font-medium text-gray-700">Dossier</label>
+            <select formControlName="dossierId" id="dossier"
+                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                <option value="">-- Sélectionner un dossier --</option>
+                <option *ngFor="let dossier of dossiers" [value]="dossier._id">{{ dossier.titre_dossier }}</option>
+            </select>
+            <div *ngIf="factureForm.get('dossierId')?.invalid && factureForm.get('dossierId')?.touched"
+                class="text-red-500 text-sm">
+                Sélectionnez un dossier.
+            </div>
+        </div>
+
+        <!-- Montant -->
+        <div class="mb-4">
+            <label for="amount" class="block text-sm font-medium text-gray-700">Montant</label>
+            <input type="number" formControlName="montant" id="amount"
+                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                placeholder="Montant de la facture" />
+            <div *ngIf="factureForm.get('montant')?.invalid && factureForm.get('montant')?.touched"
+                class="text-red-500 text-sm">
+                Montant est requis.
+            </div>
+        </div>
+
+        <!-- Date -->
+        <div class="mb-4">
+            <label for="date" class="block text-sm font-medium text-gray-700">Date de la Facture</label>
+            <input type="date" formControlName="date" id="date"
+                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500" />
+            <div *ngIf="factureForm.get('date')?.invalid && factureForm.get('date')?.touched"
+                class="text-red-500 text-sm">
+                Date est requise.
+            </div>
+        </div>
+
+        <!-- Statut -->
+        <div class="mb-4">
+            <label for="statut" class="block text-sm font-medium text-gray-700">Statut</label>
+            <select formControlName="statut" id="statut"
+                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                <option value="en_attente">En attente</option>
+                <option value="en_cours">En cours</option>
+                <option value="clos">Clos</option>
+            </select>
+            <div *ngIf="factureForm.get('statut')?.invalid && factureForm.get('statut')?.touched"
+                class="text-red-500 text-sm">
+                Statut est requis.
+            </div>
+        </div>
+
+        <!-- Description -->
+        <div class="mb-6">
+            <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+            <textarea formControlName="description" id="description"
+                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                placeholder="Description de la facture"></textarea>
+        </div>
+
+        <button type="submit" [disabled]="factureForm.invalid"
+            class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-indigo-400">
+            Générer la Facture
+        </button>
+    </form>
+</div>

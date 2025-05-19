@@ -1,0 +1,17 @@
+.container {
+    max-width: 800px;
+}
+
+.card-header {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.alert-info {
+    background-color: #f0f8ff;
+    border-color: #bee5eb;
+}
+
+input[type="file"] {
+    cursor: pointer;
+}

@@ -1,0 +1,38 @@
+.search-overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    
+    background: rgba(0, 0,0,0.6 );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+.search-popup{
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    text-align: center;
+    min-width: 300px;
+}
+.search-popup input{
+    padding: 10px;
+    font-size: 18px;
+    width: 100%;
+    margin-bottom: 15px;
+}
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: translateY(-10px); }
+    10% { opacity: 1; transform: translateY(0); }
+    90% { opacity: 1; }
+    100% { opacity: 0; transform: translateY(-10px); }
+  }
+  
+  .animate-fade-in-out {
+    animation: fadeInOut 3s ease-in-out;
+  }
+  

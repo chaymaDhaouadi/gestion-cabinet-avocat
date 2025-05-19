@@ -1,0 +1,12 @@
+<div class="slider">
+  <div class="slide" *ngFor="let slide of slides; let i = index" [class.active]="i === currentSlide">
+  <div class="overlay"></div>
+  <div class="content">
+  <h1 [innerHTML]="slide.text"></h1>
+  <p *ngIf="slide.subtext">{{ slide.subtext }}</p>
+  </div>
+  </div>
+  
+  <button class="nav left" (click)="prevSlide()">‹</button>
+  <button class="nav right" (click)="nextSlide()">›</button>
+  </div>

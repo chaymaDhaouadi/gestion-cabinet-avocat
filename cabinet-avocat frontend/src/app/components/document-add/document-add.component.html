@@ -1,0 +1,82 @@
+<div class="min-h-screen bg-gradient-to-r from-blue-50 to-blue-100 flex items-center justify-center px-4 pt-32">
+
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-md-10">
+        <div class="card shadow-lg border-0 rounded-4">
+          <div class="card-header bg-primary text-white text-center">
+            <h2>📄 Ajouter un Document</h2>
+          </div>
+          <div class="card-body p-4">
+            <form [formGroup]="form" class="needs-validation" novalidate>
+              <!-- Champ: Nom du fichier -->
+              <div class="mb-3">
+                <label for="nom_fichier" class="form-label">Nom du fichier</label>
+                <input type="text" formControlName="nom_fichier" class="form-control" id="nom_fichier"
+                  placeholder="ex: contrat_vente.pdf" required />
+              </div>
+
+              <!-- Champ: Type -->
+              <div class="mb-3">
+                <label for="type" class="form-label">Type</label>
+                <input type="text" formControlName="type" class="form-control" id="type" placeholder="PDF, DOCX, PNG..."
+                  required />
+              </div>
+
+              <!-- Sélecteur: Dossier -->
+              <div class="mb-3">
+                <label for="dossier_id" class="form-label">Dossier lié</label>
+                <select formControlName="dossier_id" class="form-select" id="dossier_id" required>
+                  <option value="">-- Choisir un dossier --</option>
+                  <option *ngFor="let d of dossiers" [value]="d._id">
+                    {{ d.numero_affaire }} - {{ d.titre_dossier }}
+                  </option>
+                </select>
+              </div>
+
+              <!-- Sélecteur: Facture -->
+              <div class="mb-3">
+                <label for="facture_id" class="form-label">Numéro de Facture</label>
+                <select formControlName="facture_id" class="form-select" id="facture_id"
+                  (change)="onFactureSelected($event)">
+                  <option value="">-- Choisir une facture --</option>
+                  <option *ngFor="let facture of factures" [value]="facture._id">
+                    {{ facture.numeroFacture }}
+                  </option>
+                </select>
+              </div>
+
+              <!-- Détails de la Facture (Affichage dynamique) -->
+              <div *ngIf="selectedFacture" class="alert alert-info mt-3">
+                <h5 class="mb-2">💡 Détails de la Facture :</h5>
+                <p><strong>Numéro :</strong> {{ selectedFacture.numeroFacture }}</p>
+                <p><strong>Montant :</strong> {{ selectedFacture.montant }} Dinars</p>
+                <p><strong>Date d'émission :</strong> {{ selectedFacture.date | date }}</p>
+                <p><strong>Client :</strong> {{ selectedFacture.clientId?.nom }}</p>
+              </div>
+
+              <!-- Drag & Drop Section -->
+              <div class="mb-3 border border-2 border-primary rounded p-4 text-center bg-light" (drop)="onDrop($event)"
+                (dragover)="onDragOver($event)">
+                <p class="text-muted">📂 Glissez et déposez un fichier ici</p>
+                <input type="file" (change)="onFileSelected($event)" class="form-control mt-2" />
+                <p *ngIf="file" class="text-success mt-2">
+                  ✔ {{ file.name }}
+                </p>
+              </div>
+
+              <!-- Boutons d'action -->
+              <div class="text-end mt-4">
+                <button (click)="Submit()" type="button" class="btn btn-success me-2">
+                  ✅ Ajouter Document
+                </button>
+                <button routerLink="/document/list" class="btn btn-secondary">
+                  🔙 Retour à la liste
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

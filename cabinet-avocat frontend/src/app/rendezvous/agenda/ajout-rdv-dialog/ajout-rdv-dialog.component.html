@@ -1,0 +1,52 @@
+<h1 mat-dialog-title>Créer un rendez-vous</h1>
+<div mat-dialog-content>
+    <form [formGroup]="form" class="space-y-4">
+
+        <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Titre</mat-label>
+            <input matInput formControlName="titre" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Date</mat-label>
+            <input matInput type="date" formControlName="date" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Heure</mat-label>
+            <input matInput type="time" formControlName="heure" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Lieu</mat-label>
+            <input matInput formControlName="lieu" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Notes</mat-label>
+            <textarea matInput formControlName="notes"></textarea>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="w-full mb-3">
+            <mat-label>Client</mat-label>
+            <mat-select formControlName="clientId">
+                <mat-option *ngFor="let client of clients" [value]="client._id">
+                    {{ client.nom }} - {{ client.cin }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="w-full mb-3">
+            <mat-label>Statut</mat-label>
+            <mat-select formControlName="statut">
+                <mat-option value="prévu">Prévu</mat-option>
+                <mat-option value="annulé">Annulé</mat-option>
+                <mat-option value="terminé">Terminé</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+    </form>
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-button (click)="close()">Annuler</button>
+    <button mat-flat-button color="primary" (click)="save()" [disabled]="form.invalid">Créer</button>
+</div>

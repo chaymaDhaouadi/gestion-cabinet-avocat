@@ -1,0 +1,19 @@
+<h2>Liste des Audiences</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Lieu</th>
+      <th>Résumé</th>
+      <th>Résultat</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let a of audiences">
+      <td>{{ a.date_audience | date }}</td>
+      <td>{{ a.lieu }}</td>
+      <td>{{ a.resume }}</td>
+      <td>{{ a.resultat || '—' }}</td>
+    </tr>
+  </tbody>
+</table>

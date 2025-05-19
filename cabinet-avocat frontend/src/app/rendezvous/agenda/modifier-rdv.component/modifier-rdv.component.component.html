@@ -1,0 +1,53 @@
+<h2 class="text-2xl font-semibold mb-4">Modifier le rendez-vous</h2>
+<form [formGroup]="form" class="space-y-4">
+    <div class="grid grid-cols-2 gap-4">
+        <mat-form-field class="w-full">
+            <mat-label>Client</mat-label>
+            <mat-select formControlName="clientId" required>
+                <mat-option *ngFor="let client of clients" [value]="client._id">
+                    {{ client.nom }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Titre</mat-label>
+            <input matInput formControlName="titre" required>
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Date</mat-label>
+            <input matInput type="date" formControlName="date" readonly>
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Heure</mat-label>
+            <input matInput type="time" formControlName="heure" required>
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Lieu</mat-label>
+            <input matInput formControlName="lieu">
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Notes</mat-label>
+            <textarea matInput formControlName="notes"></textarea>
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Statut</mat-label>
+            <mat-select formControlName="statut">
+                <mat-option value="prévu">Prévu</mat-option>
+                <mat-option value="annulé">Annulé</mat-option>
+                <mat-option value="reporté">Reporté</mat-option>
+                <mat-option value="terminé">Terminé</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <div class="flex justify-end space-x-2 mt-4">
+        <button mat-button (click)="close()">Annuler</button>
+        <button mat-flat-button color="primary" (click)="save()" [disabled]="form.invalid">Enregistrer</button>
+    </div>
+</form>

@@ -1,0 +1,5 @@
+<app-header></app-header>
+<app-hero-section *ngIf="router.url === '/' || router.url === '/clients'"></app-hero-section>
+<app-services *ngIf="router.url === '/' || router.url === '/clients'"></app-services>
+<router-outlet></router-outlet>
+<app-footer></app-footer>

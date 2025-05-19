@@ -1,0 +1,58 @@
+<div class="container mt-4">
+    <div *ngIf="errorMessage" class="alert alert-danger" style="margin-bottom: 10px;">
+        {{ errorMessage }}
+    </div>
+
+    <div *ngIf="!errorMessage">
+        <h2 class="text-primary mb-4">📅 Rendez-vous pour la date : {{ date }}</h2>
+
+        <div class="list-group" style="max-height: 400px; overflow-y: auto;">
+            <div *ngIf="rdvs.length > 0; else noRdv">
+                <div *ngFor="let rdv of rdvs"
+                    class="list-group-item list-group-item-action d-flex justify-content-between align-items-start animate__animated animate__fadeIn">
+                    <div class="ms-2 me-auto">
+                        <div class="fw-bold text-dark">{{ rdv.titre }}</div>
+                        <p class="mb-1"><strong>Date :</strong> {{ rdv.date | date: 'short' }}</p>
+                        <p class="mb-1"><strong>Heure :</strong> {{ rdv.heure }}</p>
+                        <p class="mb-1"><strong>Lieu :</strong> {{ rdv.lieu || 'Non spécifié' }}</p>
+                        <p class="mb-1"><strong>Client :</strong> {{ rdv.clientId?.nom || 'Client inconnu' }} |
+                            <strong>Téléphone :</strong> {{ rdv.clientId?.telephone || 'Non disponible' }}
+                        </p>
+                        <p class="mb-1"><strong>Statut :</strong>
+                            <span class="badge" [ngClass]="{
+                                    'bg-warning': rdv.statut === 'confirmé',
+                                    'bg-danger': rdv.statut === 'annulé',
+                                    'bg-warning text-dark': rdv.statut === 'prévu'
+                                }">
+                                {{ rdv.statut || 'Non spécifié' }}
+                            </span>
+                        </p>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-outline-primary btn-sm animate__animated animate__pulse"
+                            (click)="modifyRdv(rdv)">
+                            ✏️ Modifier
+                        </button>
+                        <button class="btn btn-outline-danger btn-sm animate__animated animate__pulse"
+                            (click)="deleteRdv(rdv._id)">
+                            ❌ Supprimer
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <ng-template #noRdv>
+                <div class="alert alert-info text-center mt-3 animate__animated animate__fadeIn">
+                    📌 Aucun rendez-vous pour cette date.
+                </div>
+            </ng-template>
+        </div>
+    </div>
+
+    <!-- Boutons fixes en bas -->
+    <div class="mt-4 d-flex justify-content-between position-sticky" style="bottom: 0;  padding-top: 10px;">
+        <button class="btn btn-success animate__animated animate__bounceIn" (click)="addRdv()">➕ Ajouter
+            Rendez-vous</button>
+        <button class="btn btn-secondary animate__animated animate__fadeIn" (click)="close()">❌ Fermer</button>
+    </div>
+</div>

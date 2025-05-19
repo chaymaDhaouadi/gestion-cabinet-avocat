@@ -1,0 +1,67 @@
+<div class="max-w-6xl mx-auto pt-36 px-6 md:px-10 bg-white rounded-2xl shadow-xl">
+
+    <h2 class="text-2xl font-bold text-gray-800 mb-6 border-b pb-3">📂 Liste des Dossiers</h2>
+
+    <!-- Barre de recherche -->
+    <div class="mb-4 flex items-center gap-4">
+        <input type="text" placeholder="🔍 Rechercher par Numéro d'Affaire..." [(ngModel)]="searchTerm"
+            (input)="filterDossiers()"
+            class="w-full p-3 rounded-lg border border-gray-300 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        <button (click)="clearSearch()" class="bg-gray-300 hover:bg-gray-400 text-gray-800 px-4 py-2 rounded-lg">
+            ❌ Effacer
+        </button>
+    </div>
+
+    <!-- Bouton Ajouter Dossier -->
+    <div class="mb-4 text-right">
+        <button routerLink="/dossiers/add"
+            class="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-medium px-5 py-2 rounded-xl shadow transition duration-200">
+            ➕ Ajouter un Dossier
+        </button>
+    </div>
+
+    <!-- Tableau des dossiers -->
+    <div class="overflow-x-auto rounded-lg shadow-sm">
+        <table class="min-w-full table-auto border-collapse border border-gray-200">
+            <thead class="bg-gray-100 text-gray-600 uppercase text-xs">
+                <tr>
+                    <th class="border p-3 text-left">#</th>
+                    <th class="border p-3 text-left">Numéro</th>
+                    <th class="border p-3 text-left">Titre</th>
+                    <th class="border p-3 text-left">Type</th>
+                    <th class="border p-3 text-left">Statut</th>
+                    <th class="border p-3 text-left">Client</th>
+                    <th class="border p-3 text-left">Tribunal</th>
+                    <th class="border p-3 text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let dossier of filteredDossiers; let i = index"
+                    class="text-sm text-gray-800 hover:bg-gray-50">
+                    <td class="border p-2">{{ i + 1 }}</td>
+                    <td class="border p-2">{{ dossier.numero_affaire }}</td>
+                    <td class="border p-2 text-blue-600 cursor-pointer hover:underline"
+                        (click)="voirDetailsDossier(dossier._id)">
+                        {{ dossier.titre_dossier }}
+                    </td>
+                    <td class="border p-2 capitalize">{{ dossier.type_dossier }}</td>
+                    <td class="border p-2 capitalize">{{ dossier.statut }}</td>
+                    <td class="border p-2">
+                        {{ dossier.client_id?.nom }} ({{ dossier.client_id?.cin }})
+                    </td>
+                    <td class="border p-2 capitalize">{{ dossier.tribunal_id?.nom }}</td>
+                    <td class="border p-2 text-center space-x-2">
+                        <button (click)="onEdit(dossier._id)"
+                            class="px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition-all duration-300 ease-in-out">
+                            ✏️ Modifier
+                        </button>
+                        <button (click)="onDelete(dossier._id)"
+                            class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-all duration-300 ease-in-out">
+                            🗑️ Supprimer
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

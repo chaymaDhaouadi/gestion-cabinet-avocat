@@ -1,0 +1,81 @@
+<div class="min-h-screen bg-gradient-to-r from-blue-50 to-blue-100 flex items-center justify-center px-4 pt-32">
+    <div class="max-w-lg bg-white p-6 rounded-xl shadow-md w-full">
+        <h2 class="text-2xl font-bold mb-4">📂 Détails du Dossier</h2>
+
+        <div *ngIf="dossier" class="space-y-2">
+            <p><strong>Numéro d'Affaire :</strong> {{ dossier.numero_affaire }}</p>
+            <p><strong>Titre :</strong> {{ dossier.titre_dossier }}</p>
+            <p><strong>Description :</strong> {{ dossier.description }}</p>
+            <p><strong>Type :</strong> {{ dossier.type_dossier }}</p>
+            <p><strong>Date d'ouverture :</strong> {{ dossier.date_ouverture | date }}</p>
+            <p><strong>Statut :</strong> {{ dossier.statut }}</p>
+            <p><strong>Client :</strong> {{ dossier.client_id?.nom }} (CIN : {{ dossier.client_id?.cin }})</p>
+            <p><strong>Tribunal :</strong> {{ dossier.tribunal_id?.nom || 'N/A' }}</p>
+        </div>
+
+        <hr class="my-4">
+
+        <!-- Affichage des factures du client -->
+        <h3 class="text-xl font-semibold mt-4">💰 Factures du Client</h3>
+        <div *ngIf="factures.length > 0; else noFactures" class="overflow-x-auto">
+            <table class="w-full text-sm text-left text-gray-700 mt-2 border border-gray-300">
+                <thead class="bg-blue-100 text-blue-700">
+                    <tr>
+                        <th class="p-2 border">Numéro de Facture</th>
+                        <th class="p-2 border">Date</th>
+                        <th class="p-2 border">Montant</th>
+                        <th class="p-2 border">Statut</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let facture of factures" class="border-b">
+                        <td class="p-2">{{ facture.numeroFacture }}</td>
+                        <td class="p-2">{{ facture.date| date }}</td>
+                        <td class="p-2">{{ facture.montant | currency }}</td>
+                        <td class="p-2">{{ facture.statut }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <ng-template #noFactures>
+            <p class="mt-2 text-gray-500">Aucune facture associée à ce client.</p>
+        </ng-template>
+
+        <hr class="my-4">
+
+        <!-- Affichage des documents associés -->
+        <h3 class="text-xl font-semibold mt-4">📑 Documents associés</h3>
+        <div *ngIf="documents.length > 0; else noDocuments">
+            <ul class="list-disc ml-5 mt-2 space-y-2">
+                <li *ngFor="let doc of documents">
+                    {{ doc.nom_fichier }} -
+                    <a [href]="doc.fichier_url" target="_blank" class="text-blue-500 underline">📥 Télécharger</a>
+                </li>
+            </ul>
+        </div>
+        <ng-template #noDocuments>
+            <p class="mt-2 text-gray-500">Aucun document associé à ce dossier.</p>
+        </ng-template>
+
+        <div class="mt-6 text-right flex space-x-4">
+            <button routerLink="/document/add" [queryParams]="{ dossierId: dossier._id }"
+                class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">
+                ➕ Ajouter Document
+            </button>
+
+            <button routerLink="/facture-add"
+                [queryParams]="{ dossierId: dossier._id, clientId: dossier.client_id?._id }"
+                class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+                ➕ Ajouter Facture
+            </button>
+        </div>
+
+
+        <div class="mt-6 text-right">
+            <button routerLink="/dossiers/list"
+                class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition">
+                ⬅️ Retour à la liste
+            </button>
+        </div>
+    </div>
+</div>
